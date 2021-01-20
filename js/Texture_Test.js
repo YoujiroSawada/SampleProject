@@ -23,14 +23,15 @@ function init()
 
     // Textureロード
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load('Model/GLTF/Textures/Hoge_img0.png', function(texture)
-    {
-        // ジオメトリ作成
-        const box = CreateBox(500, 0x0000ff, texture);
+    const texture = textureLoader.load('Model/GLTF/Textures/2069784i.jpg');
+    const geometry = new THREE.BoxGeometry(100,100,100);
+    const material = new THREE.MeshBasicMaterial({map:texture});
+    const box = new THREE.Math(geometry, material);
+    // ジオメトリ作成
+    //const box = CreateBox(500, 0x0000ff, texture);
 
-        // シーンに追加
-        scene.add(box);
-    });
+    // シーンに追加
+    scene.add(box);
 
     // ライトを作る
     const light = new THREE.DirectionalLight(0xffffff);
