@@ -86,7 +86,7 @@ loader.load(modelLoadPath, function(gltf)
     scene.add(model);
 });
 
-const light = new THREE.DirectionlLight(0xffffff);
+const light = new THREE.DirectionalLight(0xFFFFFF);
 light.position.set(1,1,1);
 light.intensity = 2;
 scene.add(light);
