@@ -3,6 +3,8 @@ window.addEventListener('load', init);
 const width = 1920;
 const height = 1080;
 
+const modelLoadPath = 'Model/GLTF/Monkey.glb';
+
 function init()
 {
     console.log('loaded');
@@ -17,16 +19,31 @@ function init()
     const scene = new THREE.Scene();
 
     // カメラを作る
-    const camera = CreatCamera(45, +1000);
+    const camera = CreatCamera(45, +100);
 
     // ジオメトリ作成
     const box = CreateBox(500, 0x0000ff);
 
     // モデルロード
-    
+    let model = null;
+    const loader = new THREE.GLTFLoader();
+    loader.setCrossOrigin('anonymous');
+    const dloader = new THREE.DRACOLoader();
+    loader.setDRACOLoader(dloader);
+    loader.load(modelLoadPath, function(gltf)
+    {
+        model = gltf.scene;
+        model.scale.set(40,40,40);
+        model.position.set(0,0,0);
+        model.rotation.set(0,0,0);
+
+        console.log('model loaded');
+
+        scene.add(model);
+    })
 
     // シーンに追加
-    scene.add(box);
+    // scene.add(box);
 
     // ライトを作る
     const light = new THREE.DirectionalLight(0xffffff);
@@ -42,9 +59,12 @@ function init()
     {
         requestAnimationFrame(tick);
 
-        // 回転
-        box.rotation.x += 0.1;
-        box.rotation.y += 0.1;
+        if(model != null)
+        {
+            // 回転
+            model.rotation.x += 0.1;
+            model.rotation.y += 0.1;
+        }
 
         renderer.render(scene,camera);
     }
