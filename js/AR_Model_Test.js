@@ -91,7 +91,7 @@ loader.load(modelLoadPath, function(gltf)
         let i;
         for(i = 0; i < animations.length; i++)
         {
-            AnimationMixer.clipAction(animations[i]).play();
+            animationMixer.clipAction(animations[i]).play();
         }
     }
     scene.add(model);
