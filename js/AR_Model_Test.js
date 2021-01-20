@@ -1,4 +1,4 @@
-const modelLoadPath = 'Model/GLTF/Monkey.glb';
+const modelLoadPath = 'Model/GLTF/Monkey_Anim.glb';
 
 const renderer = new THREE.WebGLRenderer
 (
@@ -74,6 +74,7 @@ const arMarkerControls = new THREEx.ArMarkerControls
 );
 
 let model = null;
+let animationMixer = new THREE.AnimationMixer();
 const loader = new THREE.GLTFLoader();
 loader.setCrossOrigin('anonymous');
 const dloader = new THREE.DRACOLoader();
@@ -83,6 +84,16 @@ loader.load(modelLoadPath, function(gltf)
     model = gltf.scene;
     model.position.y = 1.0;
     model.rotation.set(0,0,0);
+
+    const animations = gltf.animations;
+    if(animations && animations.length)
+    {
+        let i;
+        for(i = 0; i < animations.length; i++)
+        {
+            AnimationMixer.clipAction(animations[i]).play();
+        }
+    }
     scene.add(model);
 });
 
@@ -104,5 +115,9 @@ requestAnimationFrame(function animate()
     }
 
     const delta = clock.getDelta();
+    if(animationMixer)
+    {
+        animationMixer.update(delta);
+    }
     renderer.render(scene, camera);
 });
