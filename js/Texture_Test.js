@@ -26,7 +26,7 @@ function init()
     const texture = textureLoader.load('Model/GLTF/Textures/2069784i.jpg');
     const geometry = new THREE.BoxGeometry(100,100,100);
     const material = new THREE.MeshBasicMaterial({map:texture});
-    const box = new THREE.Meth(geometry, material);
+    const box = new THREE.Mesh(geometry, material);
     // ジオメトリ作成
     //const box = CreateBox(500, 0x0000ff, texture);
 
