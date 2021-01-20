@@ -86,6 +86,14 @@ loader.load(modelLoadPath, function(gltf)
     scene.add(model);
 });
 
+// 色空間変更 ←　いらないかも？？
+renderer.outputEncoding = THREE.sRGBEncording;
+
+const light = new THREE.DirectionlLight(0xffffff);
+light.position.set(1,1,1);
+light.intensity = 2;
+scene.add(light);
+
 
 let clock = new THREE.Clock();
 
