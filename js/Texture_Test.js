@@ -23,7 +23,7 @@ function init()
 
     // Textureロード
     const textureLoader = new THREE.TextureLoader();
-    textureLoader.load('Model/Texture/Hoge_img0.png', function(texture)
+    textureLoader.load('Model/GLTF/Textures/Hoge_img0.png', function(texture)
     {
         // ジオメトリ作成
         const box = CreateBox(500, 0x0000ff, texture);
