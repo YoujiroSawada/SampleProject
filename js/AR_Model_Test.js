@@ -74,7 +74,7 @@ const arMarkerControls = new THREEx.ArMarkerControls
 );
 
 let model = null;
-let animationMixer = new THREE.AnimationMixer();
+let animationMixer = null;
 const loader = new THREE.GLTFLoader();
 loader.setCrossOrigin('anonymous');
 const dloader = new THREE.DRACOLoader();
@@ -89,6 +89,7 @@ loader.load(modelLoadPath, function(gltf)
     if(animations && animations.length)
     {
         let i;
+        animationMixer = new THREE.AnimationMixer(model);
         for(i = 0; i < animations.length; i++)
         {
             animationMixer.clipAction(animations[i]).play();
