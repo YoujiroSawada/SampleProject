@@ -68,7 +68,7 @@ const arMarkerControls = new THREEx.ArMarkerControls
 
     {
         type : 'pattern',
-        patternUrl : 'data/patt.hiro',
+        patternUrl : 'data/pattern-2069784i.patt',
         changeMatrixMode : 'cameraTransformMatrix'
     }
 );
