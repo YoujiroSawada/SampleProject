@@ -90,10 +90,11 @@ loader.load(modelLoadPath, function(gltf)
 renderer.outputEncoding = THREE.sRGBEncording;
 
 const light = new THREE.DirectionlLight(0xffffff);
+const ambient = new THREE.AmbientLight(0xffffff);
 light.position.set(1,1,1);
 light.intensity = 2;
 scene.add(light);
-
+scene.add(ambient);
 
 let clock = new THREE.Clock();
 
